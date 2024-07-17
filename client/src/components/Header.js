@@ -17,7 +17,7 @@ function Header() {
                 <Link to="#">HEALTHY LIVING</Link>
                 <Link to="#">COMMUNITY</Link>
                 <Link to="#">ABOUT</Link>
-                <Link to="#">STORE</Link>
+                <Link to="#">SIGN-UP</Link>
             </div>
             <div className="head3"><i className='fa-solid fa-bars'></i></div>
         </header>

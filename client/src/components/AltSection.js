@@ -17,7 +17,7 @@ function Footer() {
                         <div className="h1ofpart1 colorwhite">
                             Join for Free
                         </div>
-                        <div className="ww">
+                        <div className="wwz">
                             Reach your fitness goals or maintain your healthy lifestyle
                             with professional training and support from a positive and
                             active online community.<div></div>
@@ -42,7 +42,7 @@ function Footer() {
                         <div className="h1ofpart1 colorwhite">
                             WO Plus
                         </div>
-                        <div className="ww">
+                        <div className="wwe">
                             WO Plus includes everything you get with a free membership
                             and adds brand new convenience features, fitness tools,
                             and unique content.
