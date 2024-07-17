@@ -1,104 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './css/Programs.css';
 
-function Programs() {
+const Programs = () => {
     const [todos, setTodos] = useState([]);
     const [newTodo, setNewTodo] = useState('');
+    const [selectedLogo, setSelectedLogo] = useState('');
 
-    useEffect(() => {
-        fetchTodos();
-    }, []);
-
-    const fetchTodos = async () => {
-        try {
-            const response = await fetch('/api/todos');
-            const data = await response.json();
-            setTodos(data);
-        } catch (err) {
-            console.error('Error fetching todos:', err);
+    const addTodo = () => {
+        if (newTodo.trim() && selectedLogo) {
+            setTodos([...todos, { text: newTodo.trim(), logo: selectedLogo, finished: false }]);
+            setNewTodo('');
+            setSelectedLogo('');
         }
     };
 
-    const handleChange = (e) => {
-        setNewTodo(e.target.value);
+    const removeTodo = (index) => {
+        setTodos(todos.filter((_, i) => i !== index));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (newTodo.trim() !== '') {
-            try {
-                const response = await fetch('/api/todos', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ text: newTodo })
-                });
-                const data = await response.json();
-                setTodos([...todos, data]);
-                setNewTodo('');
-            } catch (err) {
-                console.error('Error adding todo:', err);
-            }
-        }
-    };
-
-    const completeTodo = async (id) => {
-        try {
-            const response = await fetch(`/api/todos/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ completed: true })
-            });
-            const updatedTodo = await response.json();
-            setTodos(todos.map(todo => todo._id === id ? updatedTodo : todo));
-        } catch (err) {
-            console.error('Error completing todo:', err);
-        }
-    };
-
-    const removeTodo = async (id) => {
-        try {
-            await fetch(`/api/todos/${id}`, {
-                method: 'DELETE'
-            });
-            setTodos(todos.filter(todo => todo._id !== id));
-        } catch (err) {
-            console.error('Error removing todo:', err);
-        }
+    const finishTodo = (index) => {
+        setTodos(todos.map((todo, i) => i === index ? { ...todo, finished: !todo.finished } : todo));
     };
 
     return (
-        <div className='Main'>
-            <h2>Todo List</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="container">
+            {/* <p className="paragraph">Keep track of your workout routines</p> */}
+            <div className="todoContainer">
+                <h2 className="subHeader">Workout List</h2>
                 <input
-                    type='text'
+                    type="text"
                     value={newTodo}
-                    onChange={handleChange}
-                    placeholder='Add new todo'
+                    onChange={(e) => setNewTodo(e.target.value)}
+                    className="input"
                 />
-                <button type='submit'>Add</button>
-            </form>
-            <ul>
-                {todos.map((todo) => (
-                    <li key={todo._id} className={todo.completed ? 'completed' : ''}>
-                        <span>{todo.text}</span>
-                        <div className='buttons'>
-                            {!todo.completed && (
-                                <button onClick={() => completeTodo(todo._id)}>
-                                    Complete
-                                </button>
-                            )}
-                            <button onClick={() => removeTodo(todo._id)}>Remove</button>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+                <select value={selectedLogo} onChange={(e) => setSelectedLogo(e.target.value)} className="select">
+                    <option value="" disabled>Select logo</option>
+                    <option value=""><i class="fa-solid fa-dumbbell"></i></option>
+                    <option value="logo2.png">Logo 2</option>
+                    <option value="logo3.png">Logo 3</option>
+                </select>
+                <button onClick={addTodo} className="button">Add</button>
+                <ul className="list">
+                    {todos.map((todo, index) => (
+                        <li key={index} className={`listItem ${todo.finished ? 'finished' : ''}`}>
+                            <img src={todo.logo} alt="logo" className="logo" />
+                            {todo.text}
+                            <button onClick={() => finishTodo(index)} className="finishButton">
+                                {todo.finished ? 'Undo' : 'Finish'}
+                            </button>
+                            <button onClick={() => removeTodo(index)} className="deleteButton">X</button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
-}
+};
 
 export default Programs;

@@ -1,63 +1,88 @@
-.Main {
-    max-width: 400px;
+/* .container {
+    font-family: 'Arial, sans-serif';
+    color: #f1f1f1;
+    padding: 20px;
+    max-width: 600px;
     margin: 0 auto;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-h2 {
+    background-color: #000;
+} */
+/* .container {
     text-align: center;
+    margin: 20px;
+} */
+
+.paragraph {
+    font-size: 18px;
     margin-bottom: 20px;
 }
 
-form {
-    display: flex;
-    margin-bottom: 20px;
+.todoContainer {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-input[type='text'] {
-    flex: 1;
+.subHeader {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.input, .select {
     padding: 10px;
+    margin: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
 }
 
-button {
-    padding: 10px 15px;
+.button {
+    padding: 10px 20px;
     font-size: 16px;
-    background-color: #333;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 0 4px 4px 0;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #555;
-}
-
-ul {
+.list {
     list-style-type: none;
     padding: 0;
 }
 
-li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-radius: 4px;
+.listItem {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.completed {
+.listItem.finished {
     text-decoration: line-through;
-    opacity: 0.6;
+    background-color: #d3ffd3;
 }
 
-.buttons {
-    display: flex;
-    gap: 5px;
+.logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.finishButton, .deleteButton {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.finishButton {
+    background-color: #FFD700;
+    color: black;
+}
+
+.deleteButton {
+    background-color: #FF6347;
+    color: white;
 }

@@ -1,46 +1,72 @@
-header.head {
+/* Header styles */
+.head {
     color: #FAFAF9;
     display: flex;
     justify-content: space-between;
-    justify-items: center;
+    align-items: center;
     margin-top: 29px !important;
 }
 
-div.head2 {
+.head1 .workout {
+    cursor: pointer;
+}
+
+.head2 {
     display: flex;
     gap: 12px;
 }
-div.head3 {
-    display: flex;
-    gap: 12px;
+
+.head3 {
     display: none;
     color: #FAFAF9;
     cursor: pointer;
 }
 
-
-div.head2 a {
+.head2 a {
     font-size: 12px;
     opacity: 0.7;
     text-decoration: none;
     color: #FAFAF9;
 }
 
+/* Dropdown styles */
+.dropdown {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #171717;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    padding: 10px;
+    border: 1px solid #FAFAF9;
+}
 
+.dropdown a {
+    font-size: 12px;
+    opacity: 0.7;
+    text-decoration: none;
+    color: #FAFAF9;
+    padding: 5px 0;
+}
+
+/* Media query for responsive design */
+@media (max-width: 792px) {
+    .head2 {
+        display: none;
+    }
+
+    .head3 {
+        display: flex;
+    }
+
+    .dropdown {
+        display: flex;
+    }
+}
+
+/* Body styles */
 body {
     margin: 0;
     background-color: #171717;
-}
-div.workout {
-    cursor: pointer;
-    
-}
-@media (max-width: 792px) {
-
-    div.head2 {
-        display: none;
-    }
-    div.head3 {
-        display: block;
-    }
 }
