@@ -1,44 +1,46 @@
 import React from 'react';
-import './css/abut.css'; // Import your CSS file
+import './css/Abut.css';
 
-const SocialLinks = () => {
-    const handleCircleClick = () => {
-        const circle = document.querySelector('.circle');
-        circle.classList.toggle('open');
-    };
-
+const About = () => {
     return (
-        <div className="container1">
-            <div className="circle" onClick={handleCircleClick}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="currentColor" className="bi bi-plus-lg" viewBox="0 0 16 16">
-                    <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-                </svg>
+        <div className="about-page">
+            <div className="hero">
+                <h1>About Us</h1>
+                <p>Discover more about our dedicated team and vibrant community</p>
             </div>
-
-            <div className="links">
-                <a href="https://www.instagram.com/" className="link-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-instagram" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                    </svg>
-                </a>
-                <a href="https://www.facebook.com/" className="link-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-facebook" viewBox="0 0 16 16">
-                        <path d="M6.5 1C5.12 1 4 2.12 4 3.5v9c0 1.379 1.12 2.5 2.5 2.5h3c1.379 0 2.5-1.121 2.5-2.5V3.5c0-1.379-1.121-2.5-2.5-2.5h-3zm0 1h3c.827 0 1.5.673 1.5 1.5v1.5h-2V4c0-.275.225-.5.5-.5zm0 2.5h2v1.5h-2V4zm-2 3.5h1v5h-1v-5zm3 0h1v5h-1v-5z"/>
-                    </svg>
-                </a>
-                <a href="https://www.twitter.com/" className="link-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-twitter" viewBox="0 0 16 16">
-                        <path d="M14.46 4.153c.017.24.017.48.017.72 0 7.373-5.61 15.876-15.876 15.876A15.777 15.777 0 0 1 0 15.94c1.046.12 2.14.06 3.153-.36C1.82 14.56 .613 13.153.153 11.64a4.52 4.52 0 0 0 2.12-.06c-1.193-.24-2.086-1.32-2.086-2.6.36.24.74.42 1.16.48a4.504 4.504 0 0 1-1.81-3.42v-.06c.6.36 1.3.6 2.04.66a4.52 4.52 0 0 1-1.81-3.78c0-.84.24-1.62.66-2.28a12.81 12.81 0 0 0 4.14 5.1c-.24-.78-.36-1.62-.36-2.46 0-.6.06-1.14.18-1.68A12.32 12.32 0 0 0 15 3.073a9.168 9.168 0 0 0 2.76-1.08 4.5 4.5 0 0 1-2.02 2.48z"/>
-                    </svg>
-                </a>
-                <a href="https://www.youtube.com/" className="link-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-youtube" viewBox="0 0 16 16">
-                        <path d="M8.051 1.336c-.2-.739-1.989-.739-2.189 0C5.5 1.585 5.5 2.796 5.5 2.796v10.407s0 1.211.362 2.46c.201.738 1.4.738 1.4.738s1.198 0 1.399-.738c.363-1.249.363-2.46.363-2.46V2.796S8.652 1.585 8.051 1.336zM6.975 4.997v6.005l5.95-3.003-5.95-3.002z"/>
-                    </svg>
-                </a>
+            <div className="content">
+                <div className="stats">
+                    <div className="stat-item">
+                        <img
+                            src="https://media.istockphoto.com/id/1359558763/photo/portrait-of-a-muscular-young-man-writing-notes-on-a-clipboard-while-working-in-a-gym.jpg?s=612x612&w=0&k=20&c=uT6wvz0chhixvjop2GnTh_uTMmiO4X05rho1T3qOzOo="
+                            alt="Teachers"
+                            className="stat-image"
+                        />
+                        <h3>Teachers</h3>
+                        <p>10 Experienced Trainers</p>
+                    </div>
+                    <div className="stat-item">
+                        <img
+                            src="https://res.cloudinary.com/highereducation/images/f_auto,q_auto/v1667417372/AccreditedSchoolsOnline.org/GettyImages-1366052585/GettyImages-1366052585.jpg?_i=AA"
+                            alt="Students"
+                            className="stat-image"
+                        />
+                        <h3>Students</h3>
+                        <p>500+ Active Members</p>
+                    </div>
+                </div>
+                <div className="description">
+                    <p>
+                        Welcome to our workout community! Our mission is to provide top-notch training and fitness resources to help you achieve your goals.
+                        With a team of dedicated trainers and a vibrant community of students, we strive to make fitness accessible and enjoyable for everyone.
+                    </p>
+                    <p>
+                        Join us today and be part of a supportive and motivating environment where you can push your limits and achieve new heights!
+                    </p>
+                </div>
             </div>
         </div>
     );
 };
 
-export default SocialLinks;
+export default About;

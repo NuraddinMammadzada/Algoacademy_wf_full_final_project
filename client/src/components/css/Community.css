@@ -1,0 +1,86 @@
+/* Community.css */
+
+.community-page {
+    padding: 20px;
+    background-color: #1e1e1e;
+    color: #FAFAF9;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.teacher-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.teacher-card {
+    background: #2d2d2d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    width: 150px;
+}
+
+.teacher-card:hover {
+    background: #333;
+    transform: scale(1.05);
+}
+
+.teacher-avatar {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.teacher-name {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.teacher-details {
+    background: #2d2d2d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.close-button {
+    background: #ff007a;
+    border: none;
+    color: #FAFAF9;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    font-size: 18px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px 0;
+}

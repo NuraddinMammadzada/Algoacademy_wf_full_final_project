@@ -4,11 +4,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 29px !important;
+    margin-top: 0; /* Remove margin-top */
+    padding: 10px 20px; /* Adjust padding */
+    height: 60px; /* Set header height */
+    background-color: rgba(23, 23, 23, 0.7); /* Transparent background */
+    position: fixed; /* Make the header fixed */
+    top: 0; /* Stick to the top */
+    left: 0;
+    width: 100%; /* Ensure it spans the full width */
+    z-index: 1000; /* Ensure it appears above other content */
 }
 
 .head1 .workout {
     cursor: pointer;
+    margin-left: 18px;
 }
 
 .head2 {
@@ -27,6 +36,7 @@
     opacity: 0.7;
     text-decoration: none;
     color: #FAFAF9;
+    margin-right: 28px;
 }
 
 /* Dropdown styles */
@@ -34,9 +44,9 @@
     display: none;
     flex-direction: column;
     gap: 12px;
-    background-color: #171717;
+    background-color: rgba(23, 23, 23, 0.9); /* Transparent background */
     position: absolute;
-    top: 60px;
+    top: 60px; /* Adjust position relative to header height */
     right: 0;
     padding: 10px;
     border: 1px solid #FAFAF9;
@@ -69,4 +79,5 @@
 body {
     margin: 0;
     background-color: #171717;
+    padding-top: 60px; /* Ensure content starts below the fixed header */
 }

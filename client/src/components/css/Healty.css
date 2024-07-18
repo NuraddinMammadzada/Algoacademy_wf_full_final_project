@@ -1,0 +1,152 @@
+/* VideoPage styles */
+.video-page {
+    display: flex;
+    background-color: #171717;
+    color: #FAFAF9;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.video-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video-list h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    border-bottom: 1px solid #FAFAF9;
+    padding-bottom: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(23, 23, 23, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.video-item video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.video-item h3 {
+    margin: 0;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.video-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-details {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.video-details h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    border-bottom: 1px solid #FAFAF9;
+    padding-bottom: 10px;
+}
+
+.video-details video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.video-details p {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comments-section h3 {
+    margin-bottom: 10px;
+}
+
+.comments-section textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #FAFAF9;
+    background-color: #333;
+    color: #FAFAF9;
+}
+
+/* Button styles with gradient animation */
+button {
+    background: linear-gradient(90deg, #00C6FF, #0072FF);
+    background-size: 200% 200%;
+    color: #FAFAF9;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    animation: gradientAnimation 3s ease infinite;
+    transition: background 0.3s ease;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+button:hover {
+    background: linear-gradient(90deg, #0072FF, #00C6FF);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .video-page {
+        flex-direction: column;
+    }
+
+    .video-details {
+        margin-top: 20px;
+    }
+}
+
+/* Body styles */
+body {
+    margin: 0;
+    background-color: #171717;
+    padding-top: 60px; /* Ensure content starts below the fixed header */
+}

@@ -1,88 +1,116 @@
-/* .container {
-    font-family: 'Arial, sans-serif';
-    color: #f1f1f1;
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #000;
-} */
-/* .container {
-    text-align: center;
-    margin: 20px;
-} */
+/* Programs.css */
 
-.paragraph {
-    font-size: 18px;
+.programs-page {
+    padding: 20px;
+    background-color: #1e1e1e;
+    color: #FAFAF9;
+}
+
+h1 {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.todoContainer {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.subHeader {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.input, .select {
-    padding: 10px;
-    margin: 10px;
-    font-size: 16px;
-}
-
-.button {
+.open-modal-button {
+    display: block;
+    margin: 20px auto;
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
     border: none;
-    border-radius: 5px;
+    color: #FAFAF9;
+    font-size: 16px;
     cursor: pointer;
-}
-
-.list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.listItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-.listItem.finished {
-    text-decoration: line-through;
-    background-color: #d3ffd3;
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
 }
 
-.logo {
-    width: 30px;
-    height: 30px;
+.task-card {
+    background: #2d2d2d;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    color: #FAFAF9;
+}
+
+.task-card h3 {
+    margin-top: 0;
+}
+
+.workout-icon {
+    font-size: 40px;
+    color: #00c6ff; /* Adjust color as needed */
+    margin: 10px auto;
+    text-align: center;
+}
+
+.task-actions {
+    margin-top: 20px;
+}
+
+.task-actions button {
+    background: linear-gradient(135deg, #ff007a, #ff00a6);
+    border: none;
+    color: #FAFAF9;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
     margin-right: 10px;
 }
 
-.finishButton, .deleteButton {
-    margin-left: 10px;
-    padding: 5px 10px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
+.task-actions p {
+    margin: 5px 0;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #2d2d2d;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    color: #FAFAF9;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
 }
 
-.finishButton {
-    background-color: #FFD700;
-    color: black;
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #333;
+    color: #FAFAF9;
 }
 
-.deleteButton {
-    background-color: #FF6347;
-    color: white;
+button[type="submit"] {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    border: none;
+    color: #FAFAF9;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }
