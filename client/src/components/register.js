@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { registerUser } from '../api';
 
 const gradientAnimation = keyframes`
   0% { background-position: 0% 50%; }
@@ -78,13 +79,28 @@ const Link = styled.a`
 `;
 
 const Signup = () => {
+  const Register = () => {
+    const [username, setUsername] = useState('');
+    const [passowrd, setPassowrd] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleRegister = async (e)=> {
+        e.preventDefault();
+        try{
+            const data = await registerUser(username,password);
+            setMessage(data.message)
+        }catch(error){
+          setMessage(error.error)
+        }
+    }
+}
   return (
     <SignupContainer>
       <SignupForm>
         <Title>Sign Up</Title>
-        <Input type="text" placeholder="Username" />
+        <Input type="text" placeholder="Username" value = {username}onChange={(e)=>setUsername(e.target.value)}/>
         <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
+        <Input type="password" placeholder="Password" value ={password}onChange={(e)=>setPassowrd(e.target.value)}/>
         <Button type="submit">Sign Up</Button>
         <Text>
           Already have an account? <Link href="/login">Log in</Link>

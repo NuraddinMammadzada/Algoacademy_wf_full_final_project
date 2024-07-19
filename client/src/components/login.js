@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { loginUser } from '../api';
 
 const gradientAnimation = keyframes`
   0% { background-position: 0% 50%; }
@@ -78,6 +79,24 @@ const Link = styled.a`
 `;
 
 const Login = () => {
+
+  const Login = () => {
+    const [username, setUsername] = useState('');
+    const [passowrd, setPassowrd] = useState('');
+    const [message, setMessage] = useState('');
+    const [email, setEmail] = useState('')
+
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      try {
+        const data = await loginUser(username, password)
+        setMessage("Login succes")
+
+      } catch (error) {
+        setMessage(error.error)
+      }
+    }
+  }
   return (
     <LoginContainer>
       <LoginForm>
