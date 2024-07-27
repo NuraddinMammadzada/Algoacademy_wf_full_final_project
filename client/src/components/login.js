@@ -1,114 +1,59 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { loginUser } from '../api';
-
-const gradientAnimation = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-const LoginContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #2c3e50, #4ca1af, #2c3e50);
-  background-size: 400% 400%;
-  animation: ${gradientAnimation} 15s ease infinite;
-`;
-
-const LoginForm = styled.form`
-  background: rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  width: 300px;
-`;
-
-const Title = styled.h2`
-  margin-bottom: 1rem;
-  color: #ffffff;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  font-size: 1rem;
-  ::placeholder {
-    color: #cccccc;
-  }
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #4ca1af, #2c3e50);
-  background-size: 200% 200%;
-  animation: ${gradientAnimation} 15s ease infinite;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background-position: 100% 50%;
-  }
-`;
-
-const Text = styled.p`
-  margin-top: 1rem;
-  color: #f1f1f1;
-`;
-
-const Link = styled.a`
-  color: black;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './css/LoginSignup.css';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null); // Added for error handling
+  const navigate = useNavigate();
 
-  const Login = () => {
-    const [username, setUsername] = useState('');
-    const [passowrd, setPassowrd] = useState('');
-    const [message, setMessage] = useState('');
-    const [email, setEmail] = useState('')
-
-    const handleLogin = async (e) => {
-      e.preventDefault();
-      try {
-        const data = await loginUser(username, password)
-        setMessage("Login succes")
-
-      } catch (error) {
-        setMessage(error.error)
-      }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', { email, password });
+      // Handle successful login
+      console.log('Login successful', response.data);
+      localStorage.setItem('token', response.data.token); // Store the token in localStorage
+      localStorage.setItem('username', email); // Store the username in localStorage
+      navigate('/');
+    } catch (error) {
+      // Set error message to state
+      setError(error.response?.data?.error || 'An error occurred during login.');
+      console.error('Error logging in', error);
     }
-  }
+  };
+
   return (
-    <LoginContainer>
-      <LoginForm>
-        <Title>Login</Title>
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Button type="submit">Log In</Button>
-        <Text>
-          Don't have an account? <Link href="/signup">Sign up</Link>
-        </Text>
-      </LoginForm>
-    </LoginContainer>
+    <div className="signup">
+      <div className="form-container">
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        {error && <p className="error-message">{error}</p>} {/* Display error message */}
+        <p>
+          Don't have an account? <a href="/signup">Sign up</a>
+        </p>
+      </div>
+    </div>
   );
 };
 

@@ -1,24 +1,33 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const aoi = axios.create({
-    baseUrl: "http:/localhost:3001/api"
-})
+const api = axios.create({
+    baseURL: "http://localhost:5000/api" // Ensure this matches your backend server URL
+});
 
-export const registerUser = async (username, password) => {
-
+export const fetchProducts = async () => {
     try {
-        const response = await axios.post(`${api}/register`, { username, password })
-        return response.data
-    } catch (error) {
-        throw error.response.data;
-    }
-}
-export const loginUser = async (username, passowrd) => {
-    try {
-        const response = await axios.post(`${api}/login`, { username, passowrd })
+        const response = await api.get('/products');
         return response.data;
     } catch (error) {
-        throw error.response.data;
+        throw error;
     }
+};
 
-}
+
+export const registerUser = async (username, password) => {
+    try {
+        const response = await api.post('/register', { username, password });
+        return response.data;
+    } catch (error) {
+        throw error.response ? error.response.data : new Error('An error occurred');
+    }
+};
+
+export const loginUser = async (username, password) => {
+    try {
+        const response = await api.post('/login', { username, password });
+        return response.data;
+    } catch (error) {
+        throw error.response ? error.response.data : new Error('An error occurred');
+    }
+};

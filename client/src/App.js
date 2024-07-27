@@ -9,10 +9,13 @@ import ASD from './components/ASD';
 import NotFound from './components/Notfound';  // Import the NotFound component
 import SocialLinks from './components/Abut'
 import Signup from './components/register'
-import Login from './components/login'
+import Login from './components/Login'
 import Healthy from './components/Healty';
 import About from './components/Abut';
-import Community from './components/Community';
+import Store from './components/Store';
+import AddProduct from './components/AddProduct';
+import ProductDetail from './components/ProductDetail';
+import Basket from './components/Basket';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -35,7 +38,10 @@ function App() {
           <Route path='/signup' element={<Signup />}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/video' element={<Healthy />}></Route>
-          <Route path='/community' element={<Community />}></Route>
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/basket" element={<Basket />} />
           <Route path="/add-video" element={<AddVideo addVideo={addVideo} />} ></Route>
 
         </Routes>

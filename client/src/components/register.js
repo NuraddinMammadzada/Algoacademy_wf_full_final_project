@@ -1,112 +1,68 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { registerUser } from '../api';
-
-const gradientAnimation = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-const SignupContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #2c3e50, #4ca1af, #2c3e50);
-  background-size: 400% 400%;
-  animation: ${gradientAnimation} 15s ease infinite;
-`;
-
-const SignupForm = styled.form`
-  background: rgba(0, 0, 0, 0.2);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  width: 300px;
-`;
-
-const Title = styled.h2`
-  margin-bottom: 1rem;
-  color: #ffffff;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  font-size: 1rem;
-  ::placeholder {
-    color: #cccccc;
-  }
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #4ca1af, #2c3e50);
-  background-size: 200% 200%;
-  animation: ${gradientAnimation} 15s ease infinite;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background-position: 100% 50%;
-  }
-`;
-
-const Text = styled.p`
-  margin-top: 1rem;
-  color: #f1f1f1;
-`;
-
-const Link = styled.a`
-  color: black;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './css/LoginSignup.css';
 
 const Signup = () => {
-  const Register = () => {
-    const [username, setUsername] = useState('');
-    const [passowrd, setPassowrd] = useState('');
-    const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [gender, setGender] = useState('');
+  const [error, setError] = useState(null); // Added for error handling
+  const navigate = useNavigate();
 
-    const handleRegister = async (e)=> {
-        e.preventDefault();
-        try{
-            const data = await registerUser(username,password);
-            setMessage(data.message)
-        }catch(error){
-          setMessage(error.error)
-        }
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/register', { username: email, password, gender }); // Update endpoint if needed
+      console.log('Signup successful', response.data);
+      navigate('/login');
+    } catch (error) {
+      // Set error message to state
+      setError(error.response?.data?.error || 'An error occurred during signup.');
+      console.error('Error signing up', error);
     }
-}
+  };
+
   return (
-    <SignupContainer>
-      <SignupForm>
-        <Title>Sign Up</Title>
-        <Input type="text" placeholder="Username" value = {username}onChange={(e)=>setUsername(e.target.value)}/>
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" value ={password}onChange={(e)=>setPassowrd(e.target.value)}/>
-        <Button type="submit">Sign Up</Button>
-        <Text>
-          Already have an account? <Link href="/login">Log in</Link>
-        </Text>
-      </SignupForm>
-    </SignupContainer>
+    <div className="signup">
+      <div className="form-container">
+        <h1>Sign Up</h1>
+        <form onSubmit={handleSignup}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <label htmlFor="gender">Gender</label>
+          <select
+            id="gender"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            required
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <button type="submit">Sign Up</button>
+        </form>
+        {error && <p className="error-message">{error}</p>} {/* Display error message */}
+        <p>
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </div>
+    </div>
   );
 };
 

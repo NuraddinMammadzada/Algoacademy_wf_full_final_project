@@ -19,7 +19,16 @@
     cursor: pointer;
     margin-left: 18px;
 }
-
+.basket-icon {
+    width: 24px;
+    height: 24px;
+    fill: #e0e0e0;
+    transition: fill 0.3s;
+  }
+  
+  .basket-icon:hover {
+    fill: #007bff;
+  }
 .head2 {
     display: flex;
     gap: 12px;
