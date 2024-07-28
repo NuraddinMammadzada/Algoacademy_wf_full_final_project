@@ -1,5 +1,5 @@
 /* About Page styles */
-.about-page {
+.about-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,12 +10,12 @@
     min-height: 100vh;
 }
 
-.hero {
+.about-hero {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.hero h1 {
+.about-hero h1 {
     font-size: 48px;
     margin: 0;
     color: #FAFAF9;
@@ -24,14 +24,14 @@
     -webkit-text-fill-color: transparent;
 }
 
-.hero p {
+.about-hero p {
     font-size: 18px;
     margin-top: 10px;
     color: #ddd;
 }
 
 /* Content styles */
-.content {
+.about-content {
     background-color: rgba(23, 23, 23, 0.8);
     padding: 20px;
     border-radius: 12px;
@@ -41,7 +41,7 @@
     margin: 0 auto;
 }
 
-.stats {
+.about-stats {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -49,7 +49,7 @@
     margin-bottom: 20px;
 }
 
-.stat-item {
+.about-stat-item {
     background-color: rgba(30, 30, 30, 0.8);
     padding: 20px;
     border-radius: 12px;
@@ -59,26 +59,26 @@
     min-width: 200px;
 }
 
-.stat-image {
+.about-stat-image {
     width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 15px;
 }
 
-.stat-item h3 {
+.about-stat-item h3 {
     margin: 10px 0;
     font-size: 24px;
     color: #FAFAF9;
 }
 
-.stat-item p {
+.about-stat-item p {
     margin: 0;
     font-size: 18px;
     color: #ccc;
 }
 
-.description {
+.about-description {
     background-color: rgba(30, 30, 30, 0.8);
     padding: 20px;
     border-radius: 12px;
@@ -86,7 +86,7 @@
     text-align: center;
 }
 
-.description p {
+.about-description p {
     margin: 10px 0;
     font-size: 16px;
     color: #ccc;

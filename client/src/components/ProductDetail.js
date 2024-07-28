@@ -1,49 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { fetchProductById } from '../api';
 import './css/ProductDetail.css';
 
-const ProductDetail = ({ match }) => {
-  const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1);
+const ProductDetail = ({ addToCart }) => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [product, setProduct] = useState(null);
+    const [quantity, setQuantity] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/products/${match.params.id}`);
-        setProduct(response.data);
-      } catch (error) {
-        console.error('Error fetching product details', error);
-      }
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const data = await fetchProductById(id);
+                setProduct(data);
+            } catch (error) {
+                setError('Error loading product');
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getProduct();
+    }, [id]);
+
+    const handleAddToCart = () => {
+        addToCart(product, quantity);
     };
-    fetchProduct();
-  }, [match.params.id]);
 
-  const handleAddToBasket = () => {
-    // Logic to add product to basket
-    // Could use localStorage or context for state management
-  };
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
+    if (!product) return <p>Product not found</p>;
 
-  if (!product) return <p>Loading...</p>;
-
-  return (
-    <div className="product-detail">
-      <h1>{product.name}</h1>
-      <img src={product.imageUrl} alt={product.name} className="product-image"/>
-      <p>{product.description}</p>
-      <p>${product.price}</p>
-      <div className="quantity-selector">
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          min="1"
-        />
-      </div>
-      <button onClick={handleAddToBasket} className="add-to-basket-btn">Add to Basket</button>
-    </div>
-  );
+    return (
+        <div className="product-detail">
+            <div className="product-image">
+                <img src={product.imageUrl} alt={product.name} />
+            </div>
+            <div className="product-info">
+                <h2>{product.name}</h2>
+                <p>{product.description}</p>
+                <p>${product.price.toFixed(2)}</p>
+                <div className="quantity-control">
+                    <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
+                    <span>{quantity}</span>
+                    <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                </div>
+                <button onClick={handleAddToCart}>Add to Cart</button>
+                <Link to="/store" className="back-button">Back</Link>
+            </div>
+        </div>
+    );
 };
 
 export default ProductDetail;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchProducts } from '../api';
 import './css/Store.css';
 
@@ -9,6 +10,7 @@ const Store = () => {
     const [category, setCategory] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getProducts = async () => {
@@ -52,9 +54,8 @@ const Store = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                 >
-                    <option value="">All Categories</option>
-                    <option value="fitness">Fitness</option>
-                    <option value="nutrition">Nutrition</option>
+                    <option value="">All Filters</option>
+                    <option value="equipment">Equipment</option>
                     <option value="accessories">Accessories</option>
                     {/* Add other categories as needed */}
                 </select>
@@ -62,13 +63,12 @@ const Store = () => {
             <div className="product-grid">
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map(product => (
-                        <div key={product._id} className="product-card">
+                        <Link key={product._id} to={`/product/${product._id}`} className="product-card">
                             <img src={product.imageUrl} alt={product.name} />
                             <h3>{product.name}</h3>
                             <p>{product.description}</p>
                             <p>${product.price.toFixed(2)}</p>
-                            <button>Add to Cart</button>
-                        </div>
+                        </Link>
                     ))
                 ) : (
                     <p>No products found</p>

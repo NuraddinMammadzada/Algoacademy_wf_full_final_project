@@ -4,20 +4,22 @@ import { useNavigate } from 'react-router-dom';
 import './css/LoginSignup.css';
 
 const Signup = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [gender, setGender] = useState('');
-  const [error, setError] = useState(null); // Added for error handling
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/register', { username: email, password, gender }); // Update endpoint if needed
+      const response = await axios.post('http://localhost:5000/api/register', { name, email, password, gender });
       console.log('Signup successful', response.data);
-      navigate('/login');
+      localStorage.setItem('username', response.data.name); // Store username in localStorage
+      localStorage.setItem('token', response.data.token); // Store token in localStorage
+      navigate('/'); // Redirect to home page
     } catch (error) {
-      // Set error message to state
       setError(error.response?.data?.error || 'An error occurred during signup.');
       console.error('Error signing up', error);
     }
@@ -28,6 +30,14 @@ const Signup = () => {
       <div className="form-container">
         <h1>Sign Up</h1>
         <form onSubmit={handleSignup}>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -57,7 +67,7 @@ const Signup = () => {
           </select>
           <button type="submit">Sign Up</button>
         </form>
-        {error && <p className="error-message">{error}</p>} {/* Display error message */}
+        {error && <p className="error-message">{error}</p>}
         <p>
           Already have an account? <a href="/login">Login</a>
         </p>

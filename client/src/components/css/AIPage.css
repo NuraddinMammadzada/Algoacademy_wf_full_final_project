@@ -1,0 +1,163 @@
+/* General Styles */
+.ai-page-body, .ai-page-html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .ai-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 20px;
+  }
+  
+  .ai-page-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .ai-page-input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ai-page-input-field {
+    flex: 1;
+    padding: 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .ai-page-send-button {
+    padding: 15px 20px;
+    background-color: #ff7e5f;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ai-page-send-button:hover {
+    background-color: #feb47b;
+  }
+  
+  .ai-page-loading-text {
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+  
+  .ai-page-responses-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 80px; /* space for the input field */
+  }
+  
+  .ai-page-response-card {
+    background-color: #324851;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    word-wrap: break-word;
+    color: #fff;
+  }
+  
+  .ai-page-response-text {
+    font-size: 1em;
+  }
+  
+  .ai-page-user-message {
+    align-self: flex-end;
+    background-color: #3a3a3a;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    color: #fff;
+    max-width: 80%;
+  }
+  
+  .ai-page-ai-message {
+    align-self: flex-start;
+    background-color: #2b6777;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    color: #fff;
+    max-width: 80%;
+  }
+  
+  .ai-page-nickname {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ffd700;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    .ai-page-title {
+      font-size: 2em;
+    }
+  
+    .ai-page-input-container {
+      max-width: 100%;
+    }
+  
+    .ai-page-responses-container {
+      max-width: 100%;
+    }
+  
+    .ai-page-response-card {
+      padding: 15px;
+    }
+  
+    .ai-page-response-text {
+      font-size: 0.9em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .ai-page-title {
+      font-size: 1.5em;
+    }
+  
+    .ai-page-input-field, .ai-page-send-button {
+      font-size: 0.9em;
+      padding: 10px;
+    }
+  
+    .ai-page-response-card {
+      padding: 10px;
+    }
+  
+    .ai-page-response-text {
+      font-size: 0.8em;
+    }
+  }
+  

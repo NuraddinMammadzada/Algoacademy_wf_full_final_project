@@ -4,6 +4,7 @@ import './css/Header.css';
 
 function Header() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const username = localStorage.getItem('username'); // Получаем имя пользователя из localStorage
     const navigate = useNavigate();
 
     const toggleDropdown = () => {
@@ -11,13 +12,14 @@ function Header() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
         localStorage.removeItem('username');
+        localStorage.removeItem('token');
         navigate('/login');
     };
 
-    const isLoggedIn = !!localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const handleProfileClick = () => {
+        navigate('/profile');
+    };
 
     return (
         <header className="head container">
@@ -26,18 +28,17 @@ function Header() {
             </div>
             <div className="head2">
                 <Link to="/">WORKOUTS</Link>
-                <Link to="/programs">PROGRAMS</Link>
-                <Link to="/video">VIDEO LESSONS</Link>
+                <Link to="/ai">AI</Link>
                 <Link to="/store">STORE</Link>
                 <Link to="/basket">
-                    <i className="fa-solid fa-cart-shopping">Cart</i>
+                    <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
                 <Link to="/about">ABOUT</Link>
 
-                {isLoggedIn ? (
+                {username ? (
                     <>
-                        <span className="username">Welcome, {username}</span>
-                        <button onClick={handleLogout} className="logout-button">Logout</button>
+                        <span onClick={handleProfileClick} className="username">{username}</span>
+                        <button onClick={handleLogout}>Logout</button>
                     </>
                 ) : (
                     <Link to="/login"><i className="fa-solid fa-user"></i> LOG-IN</Link>
@@ -49,14 +50,14 @@ function Header() {
             {isDropdownOpen && (
                 <div className="dropdown">
                     <Link to="/" onClick={toggleDropdown}>WORKOUTS</Link>
-                    <Link to="/programs" onClick={toggleDropdown}>PROGRAMS</Link>
-                    <Link to="/video" onClick={toggleDropdown}>VIDEO LESSONS</Link>
+                    <Link to="/ai" onClick={toggleDropdown}>AI</Link>
                     <Link to="/store" onClick={toggleDropdown}>STORE</Link>
                     <Link to="/about" onClick={toggleDropdown}>ABOUT</Link>
-                    {isLoggedIn ? (
+
+                    {username ? (
                         <>
-                            <span className="dropdown-username">Welcome, {username}</span>
-                            <button onClick={() => { handleLogout(); toggleDropdown(); }} className="dropdown-logout-button">Logout</button>
+                            <span onClick={() => { handleProfileClick(); toggleDropdown(); }} className="username">{username}</span>
+                            <button onClick={() => { handleLogout(); toggleDropdown(); }}>Logout</button>
                         </>
                     ) : (
                         <Link to="/login" onClick={toggleDropdown}><i className="fa-solid fa-user"></i> LOG-IN</Link>

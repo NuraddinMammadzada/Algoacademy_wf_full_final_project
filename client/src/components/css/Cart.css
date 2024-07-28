@@ -1,0 +1,39 @@
+.cart-container {
+  padding: 20px;
+  color: #fff;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cart-item-image {
+  max-width: 100px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-details h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.cart-item-details p {
+  margin: 5px 0;
+}
+
+.cart-item-details button {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

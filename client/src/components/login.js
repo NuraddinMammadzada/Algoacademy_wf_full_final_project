@@ -6,20 +6,18 @@ import './css/LoginSignup.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null); // Added for error handling
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
-      // Handle successful login
+      const response = await axios.post('http://localhost:5000/api/login', { username: email, password });
       console.log('Login successful', response.data);
-      localStorage.setItem('token', response.data.token); // Store the token in localStorage
-      localStorage.setItem('username', email); // Store the username in localStorage
+      localStorage.setItem('username', response.data.name); // Store username in localStorage
+      localStorage.setItem('token', response.data.token); // Store token in localStorage
       navigate('/');
     } catch (error) {
-      // Set error message to state
       setError(error.response?.data?.error || 'An error occurred during login.');
       console.error('Error logging in', error);
     }
@@ -48,7 +46,7 @@ const Login = () => {
           />
           <button type="submit">Login</button>
         </form>
-        {error && <p className="error-message">{error}</p>} {/* Display error message */}
+        {error && <p className="error-message">{error}</p>}
         <p>
           Don't have an account? <a href="/signup">Sign up</a>
         </p>
