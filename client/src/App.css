@@ -1,0 +1,72 @@
+/* src/App.css */
+
+.App {
+  text-align: center;
+  /* background-color: #282c34; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;*/
+   justify-content: center;  
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbot {
+  width: 350px;
+  height: 500px;
+  background: rgba(43, 43, 43, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: scale(0);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.chatbot.show {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.chatbot.hide {
+  transform: scale(0);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.chatbot-button {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chatbot-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.chatbot-button svg {
+  fill: white;
+}

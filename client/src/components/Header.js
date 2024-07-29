@@ -30,7 +30,7 @@ function Header() {
                 <Link to="/">WORKOUTS</Link>
                 <Link to="/ai">AI</Link>
                 <Link to="/store">STORE</Link>
-                <Link to="/basket">
+                <Link to="/cart">
                     <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
                 <Link to="/about">ABOUT</Link>
@@ -48,12 +48,11 @@ function Header() {
                 <i className='fa-solid fa-bars'></i>
             </div>
             {isDropdownOpen && (
-                <div className="dropdown">
+                <div className={`dropdown ${isDropdownOpen ? 'show' : ''}`}>
                     <Link to="/" onClick={toggleDropdown}>WORKOUTS</Link>
                     <Link to="/ai" onClick={toggleDropdown}>AI</Link>
                     <Link to="/store" onClick={toggleDropdown}>STORE</Link>
                     <Link to="/about" onClick={toggleDropdown}>ABOUT</Link>
-
                     {username ? (
                         <>
                             <span onClick={() => { handleProfileClick(); toggleDropdown(); }} className="username">{username}</span>

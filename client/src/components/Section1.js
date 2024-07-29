@@ -6,44 +6,49 @@ import logoEsprit from '../images/images/ESPRIT.png';
 import logoDW from '../images/images/Layer_1.png';
 import logoHuffPost from '../images/images/layer1.png';
 import image from "../images/images/Erko.png";
-import logokub from "../images/images/Group 27.png"
+import logokub from "../images/images/Group 27.png";
+import backgroundVideo from './video.mp4';
 
 function Section1() {
   return (
-    <div className="App container">
-      <header className="App-header">
-        <div className="content">
-          <h1 className='begin'>WORKOUT WITH ME</h1>
-          <p className="description">
+    <div className="section1-container">
+      <video className="section1-background-video" autoPlay loop muted>
+        <source src={backgroundVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <header className="section1-header">
+        <div className="section1-content">
+          <h1 className='section1-title'>WORKOUT WITH ME</h1>
+          <p className="section1-description">
             A huge selection of health and fitness content, healthy recipes and transformation stories to help you get fit and stay fit!
           </p>
-          <button className="join-button">Join Club Now!</button>
-          <div className="stats">
-            <div className="stat">
-              <span className="number">4,95</span>
-              <span className="unit">km</span>
+          <button className="section1-join-button">Join Club Now!</button>
+          <div className="section1-stats">
+            <div className="section1-stat">
+              <span className="section1-number">4,95</span>
+              <span className="section1-unit">km</span>
             </div>
-            <div className="stat">
-              <span className="number">350+</span>
-              <span className="label">Video tutorials</span>
+            <div className="section1-stat">
+              <span className="section1-number">350+</span>
+              <span className="section1-label">Video tutorials</span>
             </div>
-            <div className="stat">
-              <span className="number">500+</span>
-              <span className="label">Free Workout videos</span>
+            <div className="section1-stat">
+              <span className="section1-number">500+</span>
+              <span className="section1-label">Free Workout videos</span>
             </div>
           </div>
-          <span className='spanoflogos'>AS FEATURED IN</span>
-          <div className="logos">
-            <img src={logoNike} alt="error404" />
-            <img src={logoBuzzFeed} alt="error404" />
-            <img src={logoEsprit} alt="error404" />
-            <img src={logokub} alt="error404" />
-            <img src={logoDW} alt="error404" />
-            <img src={logoHuffPost} alt="error404" />
+          <span className='section1-featured'>AS FEATURED IN</span>
+          <div className="section1-logos">
+            <img src={logoNike} alt="Nike" />
+            <img src={logoBuzzFeed} alt="BuzzFeed" />
+            <img src={logoEsprit} alt="Esprit" />
+            <img src={logokub} alt="Kub" />
+            <img src={logoDW} alt="DW" />
+            <img src={logoHuffPost} alt="HuffPost" />
           </div>
         </div>
-        <div className="image-container">
-          <img src={image} alt="Workout" className="workout-image" />
+        <div className="section1-image-container">
+          {/* <img src={image} alt="Workout" className="section1-workout-image" /> */}
         </div>
       </header>
     </div>

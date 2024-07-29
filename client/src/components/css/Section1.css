@@ -1,39 +1,70 @@
-.App {
+.section1-container {
     text-align: center;
     font-family: 'Arial', sans-serif;
     color: white;
     padding: 20px;
-}
-
-.App-header {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section1-background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .section1-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-}
-
-.content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section1-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2; /* Ensure nav is above video */
+  }
+  
+  .section1-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .section1-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .section1-content {
     max-width: 500px;
     text-align: left;
-}
-
-h1.begin {
+  }
+  
+  .section1-title {
     font-size: 7rem;
     margin-bottom: 20px;
     margin-top: 0;
-}
-
-.description {
+  }
+  
+  .section1-description {
     font-size: 1.2rem;
     margin-bottom: 40px;
     color: #ccc;
-}
-
-img {
-    width: 100%;
-}
-
-.join-button {
+  }
+  
+  .section1-join-button {
     background-color: #f04e23;
     color: white;
     padding: 15px 30px;
@@ -42,73 +73,71 @@ img {
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 40px;
-}
-
-.stats {
+  }
+  
+  .section1-stats {
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
-}
-
-.stat {
+  }
+  
+  .section1-stat {
     text-align: center;
-}
-
-.number {
+  }
+  
+  .section1-number {
     display: block;
     font-size: 2rem;
     font-weight: bold;
-}
-
-.unit,
-.label {
+  }
+  
+  .section1-unit,
+  .section1-label {
     font-size: 1rem;
     color: #ccc;
-}
-
-.logos {
+  }
+  
+  .section1-logos {
     display: flex;
     align-items: center;
     gap: 20px;
-}
-
-span.spanoflogos {
+  }
+  
+  .section1-featured {
     opacity: 0.6;
-
-}
-
-.image-container {
+  }
+  
+  .section1-image-container {
     flex-shrink: 0;
-}
-
-.workout-image {
+  }
+  
+  .section1-workout-image {
     height: 600px;
-}
+  }
+  
+  @media (max-width: 992px) {
 
-@media (max-width: 992px) {
-    .image-container {
-        display: none;
+    .section1-logos {
+      width: 70px;
     }
-
-    .logos {
-        width: 70px;
+  
+    .section1-title {
+      font-size: 3.5rem;
     }
-
-    h1.begin {
-        font-size: 5rem;
+  
+    .section1-description {
+      font-size: 0.7rem;
+      width: 100%;
     }
-
-    .description {
-        font-size: 1rem;
+  
+    .section1-unit,
+    .section1-label,
+    .section1-number {
+      font-size: 1rem;
     }
-
-    .unit,
-    .label
-    .number {
-        font-size: 1rem;
-    }
-}
-
-* {
+  }
+  
+  * {
     box-sizing: border-box;
-}
+  }
+  

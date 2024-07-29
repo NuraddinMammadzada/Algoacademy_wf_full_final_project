@@ -28,7 +28,11 @@ const ProductDetail = ({ addToCart }) => {
     }, [id]);
 
     const handleAddToCart = () => {
-        addToCart(product, quantity);
+        if (product && quantity > 0) {
+            addToCart(product, quantity);
+        } else {
+            alert('Please select a valid quantity');
+        }
     };
 
     if (loading) return <p>Loading...</p>;

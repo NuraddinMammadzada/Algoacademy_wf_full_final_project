@@ -1,27 +1,31 @@
 // src/ActionProvider.js
 class ActionProvider {
-    constructor(createChatBotMessage, setStateFunc) {
-      this.createChatBotMessage = createChatBotMessage;
-      this.setState = setStateFunc;
-    }
-  
-    greet() {
-      const message = this.createChatBotMessage("Hello! How can I help you?");
-      this.updateChatbotState(message);
-    }
-  
-    handleDefault() {
-      const message = this.createChatBotMessage("I'm not sure how to respond to that.");
-      this.updateChatbotState(message);
-    }
-  
-    updateChatbotState(message) {
-      this.setState(prevState => ({
-        ...prevState,
-        messages: [...prevState.messages, message],
-      }));
-    }
+  constructor(createChatbotMessage, setStateFunc) {
+    this.createChatbotMessage = createChatbotMessage;
+    this.setState = setStateFunc;
   }
-  
-  export default ActionProvider;
-  
+
+  greet() {
+    const message = this.createChatbotMessage("Hello! How can I help you today?");
+    this.setChatbotMessage(message);
+  }
+
+  handleHelp() {
+    const message = this.createChatbotMessage("Sure! How can I assist you?");
+    this.setChatbotMessage(message);
+  }
+
+  handleUnknown() {
+    const message = this.createChatbotMessage("I'm sorry, I didn't understand that. Can you please rephrase?");
+    this.setChatbotMessage(message);
+  }
+
+  setChatbotMessage(message) {
+    this.setState(prevState => ({
+      ...prevState,
+      messages: [...prevState.messages, message],
+    }));
+  }
+}
+
+export default ActionProvider;

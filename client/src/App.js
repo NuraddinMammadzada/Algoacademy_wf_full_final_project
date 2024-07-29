@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddVideo from './components/AddVideo';
 import Header from './components/Header';
 import Programs from './components/Programs';
@@ -16,73 +16,13 @@ import ProductDetail from './components/ProductDetail';
 import Basket from './components/Cart';
 import Profile from './components/Profile'; // Import Profile component
 import AIPage from './components/AIPage';
-// import Chat from './components/Chat';
-import ChatBot from 'react-simple-chatbot';
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
 import config from "./chatbotConfig";
+import 'react-chatbot-kit/build/main.css';
 import MessageParser from "./MessageParser";
 import ActionProvider from "./ActionProvider";
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-const steps = [
-  {
-      id: '0',
-      message: 'Hey Geek!',
-
-      // This calls the next id
-      // i.e. id 1 in this case
-      trigger: '1',
-  }, {
-      id: '1',
-
-      // This message appears in
-      // the bot chat bubble
-      message: 'Please write your username',
-      trigger: '2'
-  }, {
-      id: '2',
-
-      // Here we want the user
-      // to enter input
-      user: true,
-      trigger: '3',
-  }, {
-      id: '3',
-      message: " hi {previousValue}, how can I help you?",
-      trigger: 4
-  }, {
-      id: '4',
-      options: [
-
-          // When we need to show a number of
-          // options to choose we create alist
-          // like this
-          { value: 1, label: 'View Courses' },
-          { value: 2, label: 'Read Articles' },
-
-      ],
-      end: true
-  }
-];
-
-// Creating our own theme
-const theme = {
-  background: '#C9FF8F',
-  headerBgColor: '#197B22',
-  headerFontSize: '20px',
-  botBubbleColor: '#0F3789',
-  headerFontColor: 'white',
-  botFontColor: 'white',
-  userBubbleColor: '#FF5733',
-  userFontColor: 'white',
-};
-
-// Set some properties of the bot
-const config = {
-  botAvatar: "img.png",
-  floating: true,
-};
 
 function App() {
   const [videos, setVideos] = useState([]);
@@ -90,6 +30,36 @@ function App() {
   const addVideo = (title, url, description) => {
     const newVideo = { title, url, description };
     setVideos([...videos, newVideo]);
+  };
+  const [showChatbot, setShowChatbot] = useState(false);
+
+  const toggleChatbot = () => {
+    setShowChatbot(prevState => !prevState);
+  };
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (product, quantity) => {
+    const existingProduct = cart.find(item => item.productId === product._id);
+    if (existingProduct) {
+      setCart(cart.map(item =>
+        item.productId === product._id
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      ));
+    } else {
+      setCart([...cart, { productId: product._id, name: product.name, price: product.price, quantity, imageUrl: product.imageUrl }]);
+    }
+  };
+
+  const removeFromCart = (productId) => {
+    setCart(cart.filter(item => item.productId !== productId));
   };
 
   return (
@@ -105,15 +75,38 @@ function App() {
           <Route path="/video" element={<Healthy />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/store" element={<Store />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/basket" element={<Basket />} />
+          <Route path="/product/:id" element={<ProductDetail addToCart={addToCart} />} />
+          <Route path="/cart" element={<Basket cart={cart} removeFromCart={removeFromCart} />} />
           <Route path="/add-video" element={<AddVideo addVideo={addVideo} />} />
           <Route path="/profile" element={<Profile />} /> {/* Added Profile route */}
           <Route path="*" element={<NotFound />} />
+
         </Routes>
       </BrowserRouter>
+      <div className="chatbot-container">
+        <div className={`chatbot ${showChatbot ? "show" : "hide"}`}>
+          <Chatbot
+            config={config}
+            messageParser={MessageParser}
+            actionProvider={ActionProvider}
+          />
+        </div>
+        <div className="chatbot-button" onClick={toggleChatbot}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.49 15.55 3.35 16.97L2 22L7.03 20.65C8.45 21.51 10.15 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM7 9C7.55228 9 8 9.44772 8 10C8 10.5523 7.55228 11 7 11C6.44772 11 6 10.5523 6 10C6 9.44772 6.44772 9 7 9ZM12 9C12.5523 9 13 9.44772 13 10C13 10.5523 12.5523 11 12 11C11.4477 11 11 10.5523 11 10C11 9.44772 11.4477 9 12 9ZM17 9C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11C16.4477 11 16 10.5523 16 10C16 9.44772 16.4477 9 17 9ZM8.61 16.19C9.45 15.73 10.44 15.5 11.5 15.5C12.56 15.5 13.55 15.73 14.39 16.19C14.79 16.41 15.3 16.22 15.52 15.81C15.73 15.41 15.54 14.9 15.13 14.69C14.04 14.09 12.79 13.75 11.5 13.75C10.21 13.75 8.96 14.09 7.87 14.69C7.46 14.9 7.27 15.41 7.48 15.81C7.7 16.22 8.21 16.41 8.61 16.19Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+      </div>
     </>
   );
 }
-
 export default App;

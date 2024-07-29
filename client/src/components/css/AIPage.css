@@ -32,29 +32,30 @@
     bottom: 0;
     left: 0;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
+    /* background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); */
+    /* border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   }
   
   .ai-page-input-field {
-    flex: 1;
+    display: flex;
     padding: 15px;
     margin-right: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 18px;
     font-size: 1em;
     background-color: #fff;
     color: #000;
   }
   
   .ai-page-send-button {
+    display: flex;
     padding: 15px 20px;
     background-color: #ff7e5f;
     border: none;
-    border-radius: 5px;
+    border-radius: 1px;
     color: white;
     font-size: 1em;
     cursor: pointer;
@@ -159,5 +160,40 @@
     .ai-page-response-text {
       font-size: 0.8em;
     }
+  }
+  .ai-page-input-send-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .ai-page-input-field {
+    width: calc(100% - 50px);
+    padding: 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 18px;
+    font-size: 1em;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .ai-page-send-button {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    background-color: #ff7e5f;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1em;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ai-page-send-button:hover {
+    background-color: #feb47b;
   }
   

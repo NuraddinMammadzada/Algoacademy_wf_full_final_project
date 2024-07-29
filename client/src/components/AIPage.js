@@ -22,7 +22,6 @@ const AIPage = () => {
       const text = response.text();
       console.log(text);
       setPromptResponses([...promptResponses, { text, type: 'ai' }]);
-      setInputValue('');
       setLoading(false);
     } catch (error) {
       console.log('Something Went Wrong');
@@ -34,7 +33,10 @@ const AIPage = () => {
     e.preventDefault();
     if (inputValue.trim() !== '') {
       setPromptResponses([...promptResponses, { text: inputValue, type: 'user' }]);
-      getResponseForGivenPrompt();
+      setTimeout(() => {
+        getResponseForGivenPrompt();
+      }, 500);
+      setInputValue('');
     }
   };
 
@@ -52,16 +54,18 @@ const AIPage = () => {
         {loading && <p className="ai-page-loading-text">Loading...</p>}
       </div>
       <form className="ai-page-input-container" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Enter your prompt"
-          className="ai-page-input-field"
-        />
-        <button type="submit" className="ai-page-send-button">
-          Send
-        </button>
+        <div className="ai-page-input-send-container">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Enter your prompt"
+            className="ai-page-input-field"
+          />
+          <button type="submit" className="ai-page-send-button">
+            <i className="fa-solid fa-arrow-up"></i>
+          </button>
+        </div>
       </form>
     </div>
   );

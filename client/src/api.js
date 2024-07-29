@@ -4,18 +4,7 @@ const api = axios.create({
     baseURL: "http://localhost:5000/api" // Ensure this matches your backend server URL
 });
 
-export const fetchProducts = async () => {
-    try {
-        const response = await api.get('/products');
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
-export const fetchProductById = async (id) => {
-    const response = await axios.get(`http://localhost:5000/api/products/${id}`);
-    return response.data;
-};
+
 export const login = async (credentials) => {
     try {
         const response = await axios.post('/api/login', credentials);
@@ -77,7 +66,15 @@ export const registerUser = async (username, password) => {
         throw error.response ? error.response.data : new Error('An error occurred');
     }
 };
+export const fetchProducts = async () => {
+    const response = await axios.get('http://localhost:5000/api/products');
+    return response.data;
+};
 
+export const fetchProductById = async (id) => {
+    const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+    return response.data;
+};
 export const loginUser = async (username, password) => {
     try {
         const response = await api.post('/login', { username, password });
